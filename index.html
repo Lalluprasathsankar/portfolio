@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lallu Prasath S — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1D9E75;
+      --accent-light: #E1F5EE;
+      --accent-dark: #085041;
+      --bg: #ffffff;
+      --bg-secondary: #f5f7f5;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --border: rgba(0,0,0,0.1);
+      --border-strong: rgba(0,0,0,0.2);
+      --sans: 'Space Grotesk', sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111312;
+        --bg-secondary: #1a1d1c;
+        --text: #f0f0f0;
+        --text-muted: #9ca3af;
+        --border: rgba(255,255,255,0.1);
+        --border-strong: rgba(255,255,255,0.2);
+        --accent-light: #0a2e23;
+        --accent-dark: #5DCAA5;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0.85rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-name .accent { color: var(--accent); }
+
+    .hero-tagline {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 12px;
+    }
+
+    .chip i { font-size: 13px; color: var(--accent); }
+
+    .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 0.5px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .btn:hover { background: var(--bg-secondary); }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+    .btn i { font-size: 16px; }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 3rem 0;
+    }
+
+    .stat {
+      background: var(--bg-secondary);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 0; border-bottom: 0.5px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-details { display: flex; flex-direction: column; gap: 10px; }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .detail-row .label { color: var(--text-muted); }
+    .detail-row .value { font-weight: 500; color: var(--text); }
+
+    /* ── SKILLS ── */
+    .skills-category {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .skills-category:first-of-type { margin-top: 0; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .skill-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .skill-card i { font-size: 18px; color: var(--accent); }
+
+    /* ── PROJECT ── */
+    .project-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: border-color 0.15s;
+    }
+
+    .project-card:hover { border-color: var(--accent); }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-light);
+      border: 0.5px solid var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .project-icon i { font-size: 22px; color: var(--accent-dark); }
+
+    .project-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .project-subtitle { font-size: 13px; color: var(--text-muted); }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .feature i { font-size: 15px; color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .tech-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      padding: 4px 11px;
+      border-radius: 12px;
+      border: 0.5px solid var(--accent);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-timeline { position: relative; }
+
+    .edu-timeline::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 1.25rem;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .edu-item:last-child { padding-bottom: 0; }
+
+    .edu-dot {
+      width: 28px;
+      height: 28px;
+      background: var(--accent-light);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .edu-dot i { font-size: 13px; color: var(--accent-dark); }
+
+    .edu-content {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+
+    .edu-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .edu-inst { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+
+    .edu-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+    .edu-score {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      padding: 3px 10px;
+      border-radius: 10px;
+      border: 0.5px solid var(--accent);
+    }
+
+    .edu-year { font-size: 12px; color: var(--text-muted); }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color 0.15s;
+    }
+
+    .cert-card:hover { border-color: var(--accent); }
+
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      border: 0.5px solid var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-icon i { font-size: 18px; color: var(--accent-dark); }
+
+    .cert-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .cert-issuer { font-size: 12px; color: var(--text-muted); }
+
+    /* ── RESUME ── */
+    .resume-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .resume-preview-wrap {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .rp-header {
+      padding: 1rem 1.5rem;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rp-header-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .rp-toggle {
+      display: flex;
+      gap: 5px;
+    }
+
+    .rp-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .rp-dot.red { background: #ff5f57; }
+    .rp-dot.yellow { background: #ffbd2e; }
+    .rp-dot.green { background: #28c840; }
+
+    .rp-body { padding: 2rem; }
+
+    .rp-name-block { text-align: center; margin-bottom: 1.5rem; }
+
+    .rp-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .rp-contact {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .rp-section-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 5px;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .rp-row { display: flex; justify-content: space-between; margin-bottom: 3px; font-size: 13px; }
+    .rp-row strong { font-weight: 500; color: var(--text); }
+    .rp-row span { color: var(--text-muted); font-size: 12px; }
+
+    .rp-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .rp-body-text { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 0.5px solid var(--border);
+    }
+
+    footer p { font-size: 13px; color: var(--text-muted); }
+    footer span { color: var(--accent); font-weight: 500; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">LP.dev</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="Lallu_Prasath_Resume.pdf" target="_blank">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="container">
+    <section class="hero" id="top">
+      <div class="hero-tag">// available for opportunities</div>
+      <h1 class="hero-name">Lallu <span class="accent">Prasath</span> S</h1>
+      <p class="hero-tagline">Data Analytics & Full-Stack Developer · Building intelligent healthcare systems and data-driven dashboards</p>
+      <div class="hero-chips">
+        <span class="chip"><i class="ti ti-mail"></i> kslalluprasath19@gmail.com</span>
+        <span class="chip"><i class="ti ti-phone"></i> +91 9786185438</span>
+        <span class="chip"><i class="ti ti-map-pin"></i> Chennai, India</span>
+        <span class="chip"><i class="ti ti-calendar"></i> DOB: 19/08/2003</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#project" class="btn primary"><i class="ti ti-code"></i> View Project</a>
+        <a href="Lallu_Prasath_Resume.pdf" class="btn" target="_blank"><i class="ti ti-file-cv"></i> Resume</a>
+        <a href="mailto:kslalluprasath19@gmail.com" class="btn"><i class="ti ti-send"></i> Contact</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">84%</div>
+          <div class="stat-lbl">M.Sc. Score</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Certifications</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1+</div>
+          <div class="stat-lbl">Live Projects</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">// about me</div>
+      <h2 class="section-title">Who I Am</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a postgraduate student at Madurai Kamaraj University specializing in Data Analytics. I bridge the gap between backend logic and data insights — building systems that are both functional and intelligent.</p>
+          <p>My work spans Python-based web backends, dynamic front-end interfaces, and analytical dashboards. I'm especially passionate about healthcare technology and AI-powered analytics.</p>
+          <p>Currently pursuing my M.Sc. (2024–2026), I'm actively looking for internship and entry-level roles in data analytics, full-stack development, and healthcare tech.</p>
+        </div>
+        <div class="about-details">
+          <div class="detail-row"><span class="label">Name</span><span class="value">Lallu Prasath S</span></div>
+          <div class="detail-row"><span class="label">Date of Birth</span><span class="value">19 Aug 2003</span></div>
+          <div class="detail-row"><span class="label">Gender</span><span class="value">Male</span></div>
+          <div class="detail-row"><span class="label">Nationality</span><span class="value">Indian</span></div>
+          <div class="detail-row"><span class="label">Marital Status</span><span class="value">Single</span></div>
+          <div class="detail-row"><span class="label">Location</span><span class="value">Chennai, India</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">// technical skills</div>
+      <h2 class="section-title">What I Work With</h2>
+
+      <div class="skills-category">Programming Languages</div>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="ti ti-brand-python"></i>Python</div>
+        <div class="skill-card"><i class="ti ti-brand-html5"></i>HTML</div>
+        <div class="skill-card"><i class="ti ti-brand-css3"></i>CSS</div>
+        <div class="skill-card"><i class="ti ti-brand-javascript"></i>JavaScript</div>
+      </div>
+
+      <div class="skills-category">Data & Analytics</div>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="ti ti-chart-bar"></i>Power BI</div>
+        <div class="skill-card"><i class="ti ti-table"></i>Excel</div>
+        <div class="skill-card"><i class="ti ti-database"></i>MySQL</div>
+        <div class="skill-card"><i class="ti ti-database"></i>MongoDB</div>
+      </div>
+
+      <div class="skills-category">Frameworks & Tools</div>
+      <div class="skills-grid">
+        <div class="skill-card"><i class="ti ti-terminal"></i>Flask</div>
+        <div class="skill-card"><i class="ti ti-brand-git"></i>Git & GitHub</div>
+        <div class="skill-card"><i class="ti ti-code"></i>VS Code</div>
+        <div class="skill-card"><i class="ti ti-device-desktop"></i>Windows</div>
+      </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="project">
+      <div class="section-label">// featured project</div>
+      <h2 class="section-title">What I've Built</h2>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="ti ti-stethoscope"></i></div>
+          <div>
+            <div class="project-title">Patient Access Management & Analytics</div>
+            <div class="project-subtitle">Full-stack healthcare web application</div>
+          </div>
+        </div>
+        <p class="project-desc">
+          A web-based healthcare management system with secure role-based access for patients, validators, admins, and analysts. Automates patient registration, billing, insurance claim processing, and data validation. Includes a real-time analytics dashboard for reporting and data-driven insights.
+        </p>
+        <div class="features">
+          <div class="feature"><i class="ti ti-check"></i>Role-based access control — patient, validator, admin, analyst</div>
+          <div class="feature"><i class="ti ti-check"></i>Automated patient registration and billing workflows</div>
+          <div class="feature"><i class="ti ti-check"></i>Insurance claim processing with data validation</div>
+          <div class="feature"><i class="ti ti-check"></i>Analytics dashboard with real-time reporting and insights</div>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">HTML</span>
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-label">// education</div>
+      <h2 class="section-title">Academic Background</h2>
+      <div class="edu-timeline">
+        <div class="edu-item">
+          <div class="edu-dot"><i class="ti ti-school"></i></div>
+          <div class="edu-content">
+            <div class="edu-title">M.Sc. Computer Science — Data Analytics</div>
+            <div class="edu-inst">Madurai Kamaraj University</div>
+            <div class="edu-meta">
+              <span class="edu-score">84%</span>
+              <span class="edu-year">2024 – 2026 (Ongoing)</span>
+            </div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-dot"><i class="ti ti-school"></i></div>
+          <div class="edu-content">
+            <div class="edu-title">Higher Secondary Certificate (Class XII)</div>
+            <div class="edu-inst">MNU Jayaraj Nadar Higher Secondary School</div>
+            <div class="edu-meta">
+              <span class="edu-score">81%</span>
+              <span class="edu-year">HSLC</span>
+            </div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-dot"><i class="ti ti-school"></i></div>
+          <div class="edu-content">
+            <div class="edu-title">Secondary School Certificate (Class X)</div>
+            <div class="edu-inst">MNU Jayaraj Annapackiyam Matriculation Higher Secondary School</div>
+            <div class="edu-meta">
+              <span class="edu-score">77%</span>
+              <span class="edu-year">SSLC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="section-label">// certifications</div>
+      <h2 class="section-title">Credentials</h2>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon"><i class="ti ti-brain"></i></div>
+          <div>
+            <div class="cert-name">AI Skills Accelerator</div>
+            <div class="cert-issuer">IBM SkillsBuild</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i class="ti ti-chart-dots"></i></div>
+          <div>
+            <div class="cert-name">Certified Data Analyst Trainee</div>
+            <div class="cert-issuer">WinWays</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i class="ti ti-shield-lock"></i></div>
+          <div>
+            <div class="cert-name">Cybersecurity Principles to AI-Powered Threat Detection in IoT</div>
+            <div class="cert-issuer">Madurai Kamaraj University — Skill Development</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <div class="section-label">// resume</div>
+      <h2 class="section-title">Download & Preview</h2>
+      <div class="resume-actions">
+        <button class="btn primary" onclick="toggleResumePreview(this)"><i class="ti ti-eye"></i> Show Preview</button>
+        <a href="mailto:kslalluprasath19@gmail.com?subject=Resume Request" class="btn"><i class="ti ti-mail"></i> Request PDF</a>
+        <a href="#top" class="btn"><i class="ti ti-arrow-up"></i> Back to Top</a>
+      </div>
+
+      <div class="resume-preview-wrap" id="resume-preview" style="display:none;">
+        <div class="rp-header">
+          <div class="rp-header-title">resume_lallu_prasath.pdf</div>
+          <div class="rp-toggle">
+            <div class="rp-dot red"></div>
+            <div class="rp-dot yellow"></div>
+            <div class="rp-dot green"></div>
+          </div>
+        </div>
+        <div class="rp-body">
+          <div class="rp-name-block">
+            <div class="rp-name">LALLU PRASATH S</div>
+            <div class="rp-contact">
+              kslalluprasath19@gmail.com · +91 9786185438<br>
+              Chennai, India · DOB: 19/08/2003 · Indian · Male · Single
+            </div>
+          </div>
+
+          <div class="rp-section-head">Education</div>
+          <div class="rp-row"><strong>M.Sc. Computer Science — Data Analytics</strong><span>2024–2026</span></div>
+          <div class="rp-sub">Madurai Kamaraj University · 84%</div>
+          <div class="rp-row"><strong>Higher Secondary Certificate (HSLC)</strong><span>81%</span></div>
+          <div class="rp-sub">MNU Jayaraj Nadar Higher Secondary School</div>
+          <div class="rp-row"><strong>Secondary School Certificate (SSLC)</strong><span>77%</span></div>
+          <div class="rp-sub">MNU Jayaraj Annapackiyam Matriculation Higher Secondary School</div>
+
+          <div class="rp-section-head">Technical Skills</div>
+          <div class="rp-body-text">
+            <strong>Languages:</strong> Python, HTML, CSS, JavaScript<br>
+            <strong>Database:</strong> MySQL, MongoDB<br>
+            <strong>Tools:</strong> Power BI, Excel, Flask, VS Code, Git & GitHub<br>
+            <strong>Operating System:</strong> Windows
+          </div>
+
+          <div class="rp-section-head">Project</div>
+          <div class="rp-row"><strong>Patient Access Management & Analytics</strong></div>
+          <div class="rp-body-text">
+            Developed a web-based healthcare management system with secure role-based access for patients, validators, admins, and analysts. Automated patient registration, billing, insurance claim processing, and data validation to improve efficiency and accuracy. Built an analytics dashboard for reporting and data-driven insights.<br><br>
+            <strong>Stack:</strong> Python · Flask · MongoDB · HTML · CSS · JavaScript
+          </div>
+
+          <div class="rp-section-head">Certifications</div>
+          <div class="rp-body-text">
+            · IBM SkillsBuild — AI Skills Accelerator<br>
+            · WinWays — Certified Data Analyst Trainee<br>
+            · MKU — Cybersecurity Principles to AI-Powered Threat Detection in IoT
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with care · <span>Lallu Prasath S</span> · Chennai, India · 2025</p>
+  </footer>
+
+  <script>
+    function toggleResumePreview(btn) {
+      var preview = document.getElementById('resume-preview');
+      if (preview.style.display === 'none') {
+        preview.style.display = 'block';
+        btn.innerHTML = '<i class="ti ti-eye-off"></i> Hide Preview';
+      } else {
+        preview.style.display = 'none';
+        btn.innerHTML = '<i class="ti ti-eye"></i> Show Preview';
+      }
+    }
+
+    // Smooth active nav highlight on scroll
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', function () {
+      var scrollY = window.scrollY;
+      sections.forEach(function (s) {
+        var top = s.offsetTop - 100;
+        var bottom = top + s.offsetHeight;
+        var id = s.getAttribute('id');
+        if (scrollY >= top && scrollY < bottom) {
+          navLinks.forEach(function (a) {
+            a.style.color = a.getAttribute('href') === '#' + id ? 'var(--accent)' : '';
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
